@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://fonts.googleapis.com/css?family=Josefin+Sans" rel="stylesheet">
+
+</head>
+
+<style>
+    body {
+        font-family: 'Josefin Sans', sans-serif;
+        box-sizing: border-box;
+        height: 900px;
+        width: 100%;
+        margin-top: 0px;
+
+    }
+
+    .container-fluid {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        background: #FFF;
+    }
+
+    /* ============= Animation background ========= */
+    .background {
+        background: linear-gradient(132deg, #FC415A, #591BC5, #212335);
+        background-size: 400% 400%;
+        animation: Gradient 15s ease infinite;
+        position: relative;
+        height: 100%;
+        width: 100%;
+
+        padding: 0px;
+        margin: 0px;
+    }
+
+    .cube {
+        position: absolute;
+        top: 80vh;
+        left: 45vw;
+        width: 10px;
+        height: 10px;
+        border: solid 1px #D7D4E4;
+        transform-origin: top left;
+        transform: scale(0) rotate(0deg) translate(-50%, -50%);
+        animation: cube 12s ease-in forwards infinite;
+    }
+
+    .cube:nth-child(2n) {
+        border-color: #FFF;
+    }
+
+    .cube:nth-child(2) {
+        animation-delay: 2s;
+        left: 25vw;
+        top: 40vh;
+    }
+
+    .cube:nth-child(3) {
+        animation-delay: 4s;
+        left: 75vw;
+        top: 50vh;
+    }
+
+    .cube:nth-child(4) {
+        animation-delay: 6s;
+        left: 90vw;
+        top: 10vh;
+    }
+
+    .cube:nth-child(5) {
+        animation-delay: 8s;
+        left: 10vw;
+        top: 85vh;
+    }
+
+    .cube:nth-child(6) {
+        animation-delay: 10s;
+        left: 50vw;
+        top: 10vh;
+    }
+
+    /* ================= Header ============ */
+    header {
+        position: absolute;
+        top: 0%;
+        left: 0%;
+        width: 100%;
+        margin: 0px;
+        padding: 0px;
+    }
+
+    header {
+        margin-top: 15%;
+        text-align: center;
+        color: #EFEEF5;
+        font-size: auto;
+    }
+
+
+    /* Animate Background*/
+    @keyframes Gradient {
+        0% {
+            background-position: 0% 50%;
+        }
+
+        50% {
+            background-position: 100% 50%;
+        }
+
+        100% {
+            background-position: 0% 50%;
+        }
+    }
+
+    @keyframes cube {
+        from {
+            transform: scale(0) rotate(0deg) translate(-50%, -50%);
+            opacity: 1;
+        }
+
+        to {
+            transform: scale(20) rotate(960deg) translate(-50%, -50%);
+            opacity: 0;
+        }
+    }
+
+    #loading {
+        position: fixed;
+        width: 100%;
+        height: 100vh;
+        background: rgba(255, 255, 255, 0.363) url('https://1.bp.blogspot.com/-s6-cIWXMhT0/YQvZ94E-UCI/AAAAAAAAAbI/qRF7KdEsdS8XU5v9DoF4mZyNYuXsYDRIACLcBGAsYHQ/s320/oie_5142951J2n2RVcC.gif') no-repeat center center;
+        z-index: 99999;
+    }
+
+    .alert {
+        padding: 20px;
+        background-color: #f44336;
+        color: white;
+    }
+
+    .closebtn {
+        margin-left: 15px;
+        color: white;
+        font-weight: bold;
+        float: right;
+        font-size: 22px;
+        line-height: 20px;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+
+    .closebtn:hover {
+        color: black;
+    }
+</style>
+
+<body onload="myFunction()">
+    <div id="loading"></div>
+    
+    <div class="alert">
+        <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+        <strong>Warning !</strong> Upload file should be in CSV format
+    </div>
+
+    <div class="container-fluid">
+        <!-- Background animtion-->
+        <div class="background">
+            <div class="cube"></div>
+            <div class="cube"></div>
+            <div class="cube"></div>
+            <div class="cube"></div>
+            <div class="cube"></div>
+        </div>
+        <header>
+            <center>
+                <form action="/data" method="POST" enctype="multipart/form-data">
+                    <input type="file" name="file">
+                    <button type="submit">upload</button>
+                </form><br>
+                {{df|safe}}<br>
+                {{df1}}<br>
+                <a href="http://127.0.0.1:5500/templates/report.html" style="color: #D7D4E4;">{{filename}}</a>
+
+            </center>
+            @svmy
+        </header>
+        <script>
+
+            var preloader = document.getElementById("loading");
+
+
+            function myFunction() {
+                preloader.style.display = 'none';
+            };
+        </script>
+        <script>
+            function scrollToTop() {
+                window.scrollTo(0, 0);
+            }
+        </script>
+</body>
+
+</html>
