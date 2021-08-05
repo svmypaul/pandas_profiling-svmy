@@ -10,7 +10,7 @@ def home():
     return render_template('index.html')
 
 
-@app.route('/data',methods = ['POST', 'GET'])
+@app.route('/data',methods = ['POST'])
 def data():
     if request.method == 'POST':
       result = request.files['file']
